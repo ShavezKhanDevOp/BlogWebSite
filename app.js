@@ -83,17 +83,16 @@ app.get('/post/title/:postId', (req, res) => {
 
 //Url : /remove
 app.get('/remove', function (req, res) {
-  // articleModel.find({}, (err, foundArticle) => {
-  //   if (err) {
-  //     console.log("Selection failed, Issue is : " + err);
-  //     res.redirect("/");
-  //   } else {
-  //     res.render("remove.ejs", {
-  //       article: foundArticle
-  //     })
-  //   }
-  // });
-  res.redirect("/");
+  articleModel.find({}, (err, foundArticle) => {
+    if (err) {
+      console.log("Selection failed, Issue is : " + err);
+      res.redirect("/");
+    } else {
+      res.render("remove.ejs", {
+        article: foundArticle
+      })
+    }
+  });
 })
 //#endregion
 
