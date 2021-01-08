@@ -117,6 +117,6 @@ app.post('/remove', function (req, res) {
 
 
 
-app.listen(POST, function () {
+app.listen(PORT, function () {
   console.log("Server started on port 3000");
 });
