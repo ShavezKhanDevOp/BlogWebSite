@@ -4,8 +4,9 @@
         <% article.forEach(item => {%>
             <h1><%= item.Title %></h1>
             <p><%= TrimText(item.Post) %></p>
+            <button type="submit" name ="submit" value="<%=item._id%>">Remove Article</button>
             <%}); %>    
-            <button type="submit">Remove Article</button>
+            
     <% } else { %>
         <p class="p"><b>Please post article...</b></p>
     <% } %>

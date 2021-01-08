@@ -10,8 +10,8 @@ const aboutContent = "Hac habitasse platea dictumst vestibulum rhoncus est pelle
 const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rhoncus urna neque viverra justo nec ultrices. Arcu dui vivamus arcu felis bibendum. Consectetur adipiscing elit duis tristique. Risus viverra adipiscing at in tellus integer feugiat. Sapien nec sagittis aliquam malesuada bibendum arcu vitae. Consequat interdum varius sit amet mattis. Iaculis nunc sed augue lacus. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Pulvinar elementum integer enim neque. Ultrices gravida dictum fusce ut placerat orci nulla. Mauris in aliquam sem fringilla ut morbi tincidunt. Tortor posuere ac ut consequat semper viverra nam libero.";
 const PORT = process.env.PORT || 3000
 const article = [];
-//const url = "mongodb://localhost:27017/ArticleDB";
-const url ="mongodb+srv://shavezkhan-admin:DevOp123@cluster0.2oic9.mongodb.net/ArticleDB"
+const url = "mongodb://localhost:27017/ArticleDB";
+//const url = "mongodb+srv://shavezkhan-admin:DevOp123@cluster0.2oic9.mongodb.net/ArticleDB"
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
   console.log("Connected to mongoDB server...");
 });
@@ -24,7 +24,7 @@ app.use(express.static("public"));
 
 //Mongoose Schema and model creations.
 const articleSchema = new mongoose.Schema({
-  
+
   Title: {
     type: String,
     required: true
@@ -73,8 +73,8 @@ app.get('/post/title/:postId', (req, res) => {
     if (err) {
       console.log("Selection failed, Issue is : " + err);
       res.redirect("/");
-    } else {   
-      console.log(reqParam.postId);   
+    } else {
+      console.log(reqParam.postId);
       res.render("post", { ArticleTitle: foundArticle })
     }
   });
@@ -83,15 +83,25 @@ app.get('/post/title/:postId', (req, res) => {
 
 //Url : /remove
 app.get('/remove', function (req, res) {
-  res.render("remove.ejs", {
-    article: article
-  })
+  articleModel.find({}, (err, foundArticle) => {
+    if (err) {
+      console.log("Selection failed, Issue is : " + err);
+      res.redirect("/");
+    } else {
+      res.render("remove.ejs", {
+        article: foundArticle
+      })
+    }
+  });
+
+
+
 })
 //#endregion
 
 //#region Post Methods
 app.post('/', function (req, res) {
-  let articleObj = new articleModel({   
+  let articleObj = new articleModel({
     Title: _.capitalize(req.body.title),
     Post: req.body.post
   });
@@ -107,8 +117,15 @@ app.post('/', function (req, res) {
 })
 
 app.post('/remove', function (req, res) {
-  article.length = 0;
-  res.redirect("/");
+  let idParam = req.body.submit;
+  articleModel.deleteOne({ _id:idParam }, (err) => {
+    if (err) {
+      console.log("error occur : " + err);
+    } else {
+      console.log("done " + idParam);
+      res.redirect("/");
+    }
+  });
 })
 //#endregion
 
