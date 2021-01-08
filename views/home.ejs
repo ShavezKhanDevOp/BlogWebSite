@@ -1,0 +1,12 @@
+<%- include('./partial/header'); -%>
+<h1>Home</h1>
+<p>
+<%= homeContent %><p></p>
+
+<% article.forEach(item => {%>
+    <h1><%= item.Title %></h1>
+    <p><%= TrimText(item.Post) %>  <a href="/post/title/<%= item._id %>"><i>Read more</i></a></p>
+    
+<%}); %>
+
+<%- include('./partial/footer'); -%>

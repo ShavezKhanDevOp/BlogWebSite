@@ -1,0 +1,14 @@
+<%- include('./partial/header'); -%>
+<form action="/remove" method="post">
+    <% if (article.length != 0) { %>
+        <% article.forEach(item => {%>
+            <h1><%= item.Title %></h1>
+            <p><%= TrimText(item.Post) %></p>
+            <%}); %>    
+            <button type="submit">Remove Article</button>
+    <% } else { %>
+        <p class="p"><b>Please post article...</b></p>
+    <% } %>
+    
+</form>
+<%- include('./partial/footer'); -%>
