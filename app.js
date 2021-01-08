@@ -93,9 +93,6 @@ app.get('/remove', function (req, res) {
       })
     }
   });
-
-
-
 })
 //#endregion
 
@@ -118,7 +115,7 @@ app.post('/', function (req, res) {
 
 app.post('/remove', function (req, res) {
   let idParam = req.body.submit;
-  articleModel.deleteOne({ _id:idParam }, (err) => {
+  articleModel.deleteOne({ _id: idParam }, (err) => {
     if (err) {
       console.log("error occur : " + err);
     } else {
@@ -129,11 +126,7 @@ app.post('/remove', function (req, res) {
 })
 //#endregion
 
-
-
-
-
-
+//App listen.
 app.listen(PORT, function () {
   console.log("Server started on port 3000");
 });
