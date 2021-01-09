@@ -10,8 +10,8 @@ const aboutContent = "Hac habitasse platea dictumst vestibulum rhoncus est pelle
 const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rhoncus urna neque viverra justo nec ultrices. Arcu dui vivamus arcu felis bibendum. Consectetur adipiscing elit duis tristique. Risus viverra adipiscing at in tellus integer feugiat. Sapien nec sagittis aliquam malesuada bibendum arcu vitae. Consequat interdum varius sit amet mattis. Iaculis nunc sed augue lacus. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Pulvinar elementum integer enim neque. Ultrices gravida dictum fusce ut placerat orci nulla. Mauris in aliquam sem fringilla ut morbi tincidunt. Tortor posuere ac ut consequat semper viverra nam libero.";
 const PORT = process.env.PORT || 3000
 const article = [];
-const url = "mongodb://localhost:27017/ArticleDB";
-//const url = "mongodb+srv://shavezkhan-admin:DevOp123@cluster0.2oic9.mongodb.net/ArticleDB"
+//const url = "mongodb://localhost:27017/ArticleDB";
+const url = "mongodb+srv://shavezkhan-admin:DevOp123@cluster0.2oic9.mongodb.net/ArticleDB"
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
   console.log("Connected to mongoDB server...");
 });
